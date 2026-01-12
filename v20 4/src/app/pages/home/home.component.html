@@ -1,0 +1,185 @@
+<section id="home" class="container section hero">
+  <div class="kicker" appReveal>Home</div>
+
+  <div class="heroWrap" appReveal>
+    <img class="plus p1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23ffffff' d='M28 6h8v52h-8z'/%3E%3Cpath fill='%23ffffff' d='M6 28h52v8H6z'/%3E%3C/svg%3E" alt="" aria-hidden="true">
+    <img class="plus p2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23ffffff' d='M28 6h8v52h-8z'/%3E%3Cpath fill='%23ffffff' d='M6 28h52v8H6z'/%3E%3C/svg%3E" alt="" aria-hidden="true">
+
+    <h1 class="h1">Hi. I'm {{profile.firstName}}.<br/>I'm into <span class="typingRole" [class.fadeOut]="fadeOut">‘{{typedRole}}’</span>.</h1>
+    <p class="sub">{{profile.summary}}</p>
+
+    <div class="ctaRow">
+      <a class="btn" href="#projects">Projects</a>
+      <a class="btn ghost" href="#contact">Contact</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="container section">
+  <div class="kicker" appReveal>About</div>
+  <div class="aboutGrid" appReveal>
+    <div class="aboutPhoto card block">
+      <img class="me" src="assets/about-portrait.jpg" alt="Anurag photo">
+    </div>
+
+    <div class="aboutText">
+      <div class="bigTitle">I'm {{profile.firstName}}.</div>
+      <div class="aboutLead">{{profile.aboutHeadline}}</div>
+      <p class="p2">{{profile.aboutBody}}</p>
+
+      <div class="aboutPills">
+        <span class="pill">{{profile.location}}</span>
+        <span class="pill">Open to Internships</span>
+        <span class="pill">Full‑Stack + AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills" class="container section">
+  <div class="kicker" appReveal></div>
+  <div appReveal>
+    <div class="bigTitle">Skills.</div>
+    <p class="sub" style="margin-top:18px">A snapshot of tools I use to build, ship, and iterate.</p>
+  </div>
+
+  <div class="skillsGrid" appReveal>
+    <article class="card block skillCard" *ngFor="let g of skillGroups()">
+      <div class="skillHead">
+        <div class="skillTitle">{{g.title}}</div>
+        <div class="skillGlow" aria-hidden="true"></div>
+      </div>
+      <div class="chips">
+        <span class="chip" *ngFor="let s of g.items">{{s}}</span>
+      </div>
+    </article>
+  </div>
+</section>
+<section id="projects" class="container section">
+  <div class="kicker" appReveal></div>
+  <div appReveal>
+    <div class="bigTitle">Projects.</div>
+    <p class="sub" style="margin-top:18px">Selected work across systems, AI, and analytics.</p>
+  </div>
+
+  <div class="projGrid" appReveal>
+    <article class="card block projCard" *ngFor="let p of profile.projects">
+      <div class="projTop">
+        <div class="projTag">{{p.category}}</div>
+        <div class="projName">{{p.name}}</div>
+      </div>
+      <div class="projDesc">{{p.tagline}}</div>
+      <div class="chips">
+        <span class="chip" *ngFor="let s of p.stack">{{s}}</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience" class="container section">
+  <div class="kicker" appReveal></div>
+  <div appReveal>
+    <div class="bigTitle">Experience.</div>
+    <p class="sub" style="margin-top:18px">Industry roles focused on production systems and delivery.</p>
+  </div>
+
+  <div class="expWrap" appReveal>
+    <article class="card block expCard" *ngFor="let x of profile.experience">
+      <div class="expTop">
+        <div class="expLeft">
+          <img *ngIf="x.logo" class="logoImg exp" [src]="x.logo" [alt]="x.company + ' logo'">
+          <div class="expText">
+            <div class="expRole">{{x.role}}</div>
+            <div class="expCompany">{{x.company}} · {{x.location}}</div>
+          </div>
+        </div>
+        <div class="expMeta">{{x.period}}</div>
+      </div>
+
+      <ul class="expBullets">
+        <li *ngFor="let b of x.bullets">{{b}}</li>
+      </ul>
+
+      <div class="chips" *ngIf="x.stack?.length" style="margin-top:14px">
+        <span class="chip" *ngFor="let s of x.stack">{{s}}</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="education" class="container section">
+  <div class="kicker" appReveal></div>
+  <div appReveal>
+    <div class="bigTitle">Education.</div>
+    <p class="sub" style="margin-top:18px">Academic foundation and focus areas.</p>
+  </div>
+
+  <div class="eduWrap" appReveal>
+    <article class="card block eduCard" *ngFor="let e of profile.education">
+      <div class="eduTop">
+        <div class="eduLeft">
+          <img *ngIf="e.logo" class="logoImg" [src]="e.logo" [alt]="e.school + ' logo'">
+          <div class="eduSchool">{{e.school}}</div>
+        </div>
+        <div class="eduMeta">{{e.period}} · {{e.location}}</div>
+      </div>
+      <div class="eduDegree">{{e.degree}}</div>
+      <div class="chips" style="margin-top:14px">
+        <span class="chip" *ngFor="let c of e.coursework">{{c}}</span>
+      </div>
+    </article>
+  </div>
+</section>
+<section id="blog" class="container section">
+  <div class="kicker" appReveal></div>
+  <div appReveal>
+    <div class="bigTitle">Blog.</div>
+    <p class="sub" style="margin-top:18px">Coming soon. I’ll add posts here later.</p>
+  </div>
+  <div class="card block blogBlank" appReveal>
+    <div class="blogInner">
+      <div class="blogIcon" aria-hidden="true">✦</div>
+      <div class="blogText">No posts yet.</div>
+      <div class="blogSmall">This section is intentionally empty for now.</div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="container section">
+  <div class="kicker" appReveal></div>
+  <div appReveal>
+    <div class="bigTitle">Contact.</div>
+    <p class="sub" style="margin-top:18px">Let’s connect — email, socials, and a placeholder for your chatbot.</p>
+  </div>
+
+  <div class="contactGrid" appReveal>
+    <div class="card block contactCard">
+      <div class="row">
+        <div class="l">Email</div>
+        <a class="v" href="mailto:{{profile.email}}">{{profile.email}}</a>
+      </div>
+      <div class="row">
+        <div class="l">Phone</div>
+        <a class="v" href="tel:{{profile.phone}}">{{profile.phone}}</a>
+      </div>
+      <div class="row">
+        <div class="l">LinkedIn</div>
+        <a class="v" [href]="profile.linkedinHref" target="_blank" rel="noreferrer">Open ↗</a>
+      </div>
+      <div class="row">
+        <div class="l">GitHub</div>
+        <a class="v" [href]="profile.githubHref" target="_blank" rel="noreferrer">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="card block botCard">
+      <div class="botTop">
+        <div class="botTitle"></div>
+        <div class="botSub">Placeholder space — you’ll wire this later.</div>
+      </div>
+      <div class="botBody">
+        <div class="botBubble">Hi! 👋</div>
+        <div class="botBubble muted">I’m your future assistant. Ask me anything about Anurag’s work.</div>
+        <div class="botInput" aria-hidden="true">Type a question…</div>
+      </div>
+    </div>
+  </div>
+</section>

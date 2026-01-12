@@ -1,0 +1,62 @@
+<div class="bg-blur" aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+
+<!-- Reference-style blur strip at the very top while scrolling -->
+<div class="topBlurLine" aria-hidden="true"></div>
+
+<header class="topnav" [class.scrolled]="scrolled()">
+  <div class="container nav-inner">
+    <nav class="links" aria-label="Primary">
+      <a (click)="go('home')" [class.active]="active()==='home'">Home</a>
+      <a (click)="go('about')" [class.active]="active()==='about'">About</a>
+      <a (click)="go('skills')" [class.active]="active()==='skills'">Skills</a>
+      <a (click)="go('projects')" [class.active]="active()==='projects'">Projects</a>
+      <a (click)="go('experience')" [class.active]="active()==='experience'">Experience</a>
+      <a (click)="go('education')" [class.active]="active()==='education'">Education</a>
+      <a (click)="go('blog')" [class.active]="active()==='blog'">Blog</a>
+      <a (click)="go('contact')" [class.active]="active()==='contact'">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="iconbtn" (click)="toggleTheme()" aria-label="Toggle day mode">
+        <span *ngIf="theme()==='dark'">☾</span>
+        <span *ngIf="theme()==='light'">☀︎</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="siteFooter">
+  <div class="container siteFooterInner">
+    <div class="footerCopy">
+      © {{ year }} Anurag Patwardhan&nbsp;&nbsp;•&nbsp;&nbsp;<a href="#" class="footerColophon">Colophon</a>
+    </div>
+
+    <div class="footerCols">
+      <div class="footerCol">
+        <div class="footerColTitle">Elsewhere</div>
+        <a href="#" aria-label="Figma">Figma</a>
+        <a href="#" aria-label="GitHub">Github</a>
+        <a href="#" aria-label="Posts">Posts</a>
+        <a href="#" aria-label="Resume">CV</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+      <div class="footerCol">
+        <div class="footerColTitle">Contact</div>
+        <a href="#contact" aria-label="Message">Message</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating theme toggle like the reference footer -->
+  <button class="footerThemeBtn" type="button" (click)="toggleTheme()" aria-label="Toggle theme">
+    <span aria-hidden="true">{{ isDark ? '☀️' : '🌙' }}</span>
+  </button>
+
+  <!-- subtle tick line like reference -->
+  <div class="footerTicks" aria-hidden="true"></div>
+</footer>
